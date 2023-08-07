@@ -5,17 +5,23 @@
   box-sizing: border-box;
   background-color: #f4f0ea;
 
+  .backgroundComponent {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: black;
+    opacity: 0.5;
+    left: 0;
+    top: 100%
+  }
+
   .bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 12px;
     font-weight: 400;
     text-transform: uppercase;
 
     a {
       position: absolute;
-      left: 0;
       text-decoration: none;
       color: black;
     }
@@ -55,6 +61,7 @@
           height: 1px;
           background-color: black;
           position: relative;
+          transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
         }
         &::after {
           top: -4px;
@@ -63,16 +70,27 @@
           top: 4px;
         }
       }
+
+      .burgerActive {
+        &::after {
+          top: -1px;
+          transform: rotate(45deg);
+        }
+        &::before {
+          top: 1px;
+          transform: rotate(-45deg);
+        }
+      }
     }
   }
 }
 
 @media only screen and (min-width: 600px) {
-    .header {
-        padding: 20px;
+  .header {
+    padding: 20px;
 
-        .bar {
-            font-size: 16px;
-        }
+    .bar {
+      font-size: 16px;
     }
+  }
 }

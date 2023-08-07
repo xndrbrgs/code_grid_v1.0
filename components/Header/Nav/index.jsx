@@ -1,9 +1,10 @@
-"use client";
-
 import styles from "./style.module.scss";
 import { motion } from "framer-motion";
 import { height } from "../anim";
 import Body from "./Body";
+import { useState } from "react";
+import Images from "./Image";
+import Footer from "./Footer";
 
 function Nav() {
   const links = [
@@ -34,6 +35,8 @@ function Nav() {
     },
   ];
 
+  const [hoveredLink, setHoveredLink] = useState({isActive: false, index: 0})
+
   return (
     <motion.div
       className={styles.nav}
@@ -44,10 +47,10 @@ function Nav() {
     >
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <Body links={links} />
-          {/* Footer  */}
+          <Body links={links} hoveredLink={hoveredLink} setHoveredLink={setHoveredLink} />
+          <Footer />
         </div>
-        {/* Image  */}
+        <Images src={links[hoveredLink.index].src} isActive={hoveredLink.isActive} />
       </div>
     </motion.div>
   );
